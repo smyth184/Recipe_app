@@ -7,7 +7,7 @@ print('\nWelcome to our Recipe Finder!')
 # Recipe search function
 def recipe_search(ingredient, exclusions, cuisine_type):
     app_id = '7a360a89'
-    app_key = 'a1a3c2a42b5495bea64d3e698c12632c'
+    app_key = 'd8cc8b979a47905b2f875163868ab2b1'
     parameters = {
         'cuisineType': cuisine_type
     }
@@ -41,6 +41,10 @@ def userinput():
         recipe = result['recipe']
         print(recipe['label'])
         print(recipe['url'])
+        print("Ingredients:")
+        print(str(recipe['ingredients']))
+        print("Calories:")
+        print(int(recipe['calories']))
         print()
 
     # asking the user if they would like to save the recipe
@@ -52,6 +56,7 @@ def userinput():
             label = recipe['label']
             website = recipe['url']
             text_file.write(label + '\n' + website)
+            print('Recipe successfully saved!')
     else:
         print('\nYou have selected "N", recipe not saved')
 
