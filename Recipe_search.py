@@ -5,16 +5,19 @@ print('\nWelcome to our Recipe Finder!')
 
 
 # Recipe search function
-def recipe_search(ingredient, exclusions, cuisine_type):
+def recipe_search(ingredient, exclusions, cuisine_type, meal_type):
     app_id = '7a360a89'
     app_key = 'd8cc8b979a47905b2f875163868ab2b1'
     parameters = {
-        'cuisineType': cuisine_type
+        'cuisineType': cuisine_type,
+        'mealType': meal_type,
     }
     try:
         result = requests.get(
-            'https://api.edamam.com/search?q={}&app_id={}&app_key={}&excluded={}'.format(ingredient, app_id, app_key,
-                                                                                         exclusions),
+            'https://api.edamam.com/search?q={}&app_id={}&app_key={}&excluded={}'.format(ingredient, app_id,
+                                                                                         app_key,
+                                                                                         exclusions,
+                                                                                         ),
             params=parameters
         )
         result.raise_for_status()  # Raise an exception if the request was unsuccessful
@@ -32,10 +35,12 @@ def userinput():
     ingredient = input('\nPlease enter an ingredient: ')
     # Prompt user for excluded ingredients
     exclusions = input('\nAny food allergies? ')
+    # Prompt user for calories
+    meal_type = input('\nPlease enter a meal type, e.g Breakfast')
     # Prompt user for meal type
     cuisine_type = input('\nWhat cuisine type would you like? e.g chinese etc: ')
     # Get results from API
-    results = recipe_search(ingredient, exclusions, cuisine_type)
+    results = recipe_search(ingredient, exclusions, cuisine_type, meal_type)
 
     for result in results:
         recipe = result['recipe']
