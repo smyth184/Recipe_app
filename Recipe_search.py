@@ -28,11 +28,11 @@ def userinput():
     # Prompt user for main ingredient
     ingredient = input('\nPlease enter an ingredient: ')
     # prompt user for another ingredient
-    ingredient2 = input('\n Would you like to enter another ingredient?')
+    ingredient2 = input('\nWould you like to enter another ingredient? ')
     # Prompt user for excluded ingredients
     exclusions = input('\nAny food allergies? ')
     # Prompt user meal type
-    meal_type = input('\nPlease enter a meal type, e.g Breakfast')
+    meal_type = input('\nPlease enter a meal type, e.g Breakfast ')
     # Prompt user for cuisine_type
     cuisine_type = input('\nWhat cuisine type would you like? e.g chinese etc: ')
     # Get results from API
@@ -54,12 +54,13 @@ def userinput():
 
     if write == 'Y':
         with open('my_recipe.txt', 'a+') as text_file:
-            label = recipe['label']
-            website = recipe['url']
-            text_file.write(label + '\n' + website + '\n')
-            print('Recipe successfully saved!')
+            for result in results:
+                recipe = result['recipe']
+                label = recipe['label']
+                website = recipe['url']
+                text_file.write(label + '\n' + website + '\n\n')
+        print('Recipe successfully saved!')
     else:
         print('\nYou have selected "N", recipe not saved')
-
 
 userinput()
