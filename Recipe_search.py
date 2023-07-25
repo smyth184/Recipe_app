@@ -38,12 +38,18 @@ def userinput():
     # Get results from API
     results = recipe_search(ingredient, ingredient2, exclusions, cuisine_type, meal_type)
 
+   
+    if len(results) == 0:
+        print("No recipes found.")
+        return
+
     for result in results:
         recipe = result['recipe']
         print(recipe['label'])
         print(recipe['url'])
         print("Ingredients:")
-        print(str(recipe['ingredients']))
+        for ingredient in recipe['ingredients']:
+            print(ingredient['text'])
         print("Calories:")
         print(int(recipe['calories']))
         print()
