@@ -59,7 +59,7 @@ def userinput():
     write = input('Would you like to save the recipe to a file? Y/N: ').upper()
 
     if write == 'Y':
-        with open('my_recipe.txt', 'a+') as text_file:
+        with open('my_recipe.txt', 'w+') as text_file:
             for result in results:
                 recipe = result['recipe']
                 label = recipe['label']
