@@ -26,19 +26,18 @@ def recipe_search(ingredient, ingredient2, exclusions, cuisine_type, meal_type):
 
 def userinput():
     # Prompt user for main ingredient
-    ingredient = input('\nPlease enter an ingredient: ')
+    ingredient = input('\nPlease enter an ingredient: ').upper()
     # prompt user for another ingredient
-    ingredient2 = input('\nWould you like to enter another ingredient? ')
+    ingredient2 = input('\nWould you like to enter another ingredient? (Leave blank if none): ').upper()
     # Prompt user for excluded ingredients
-    exclusions = input('\nAny food allergies? ')
+    exclusions = input('\nAny food allergies? (Leave blank if none): ')
     # Prompt user meal type
-    meal_type = input('\nPlease enter a meal type, e.g Breakfast ')
+    meal_type = input('\nPlease enter a meal type (e.g., Breakfast): ').upper()
     # Prompt user for cuisine_type
-    cuisine_type = input('\nWhat cuisine type would you like? e.g chinese etc: ')
+    cuisine_type = input('\nWhat cuisine type would you like? (e.g., Chinese): ').upper()
     # Get results from API
     results = recipe_search(ingredient, ingredient2, exclusions, cuisine_type, meal_type)
-
-   
+    
     if len(results) == 0:
         print("No recipes found.")
         return
